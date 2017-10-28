@@ -32,10 +32,17 @@ router.get('/logout', function(req, res) {
 router.put('/toggleAlarm', function(req, res) {
   
     console.log('Alarm has been toggled');
-      User.findOneUpdate({_id: req.user.id}, function(error, user){
-        user.active =!user.active;
+      User.findById(req.user.id, function(error, user){
+        user.active = !user.active;
+        user.save(function (err) {
+          if(err) {
+              console.error('ERROR!');
+              res.sendStatus(500);
+          } else {
+              res.sendStatus(201);
+          }
+      });
     })
-    res.sendStatus(200);
   });
 
 
