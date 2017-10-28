@@ -1,15 +1,35 @@
 <div ng-include="'views/partials/nav.html'" ng-controller="InfoController as ic"></div>
 <div class="container">
+  <h1>
+    Information Dashboard
+  </h1>
+  <hr>
   <div ng-repeat="sensor in ic.sensorObject.data">
+
+    <!-- you need to always end the type of sensor with "door" so data below makes sense-->
+    <h4>
+      Sensor:
+    </h4>
     <p>
-      <strong>Sensor Status:</strong>
-      {{sensor.type}}
+      {{sensor.name}}
     </p>
     <p>
-      {{sensor.isOpen}}
+      Open: {{sensor.isOpen}}
     </p>
-    <p>
-      {{sensor.history}}
-    </p>
+    <h4>
+      Sensor Instances:
+      </h5>
+      <div ng-repeat="h in sensor.history">
+
+        <p>
+          Sensor Status: {{h.status}}
+        </p>
+        <p>
+          Time: {{ h.time | date : "medium" }}
+        </p>
+      </div>
+      <hr>
   </div>
 </div>
+
+ <!-- {{h.time}} -->
