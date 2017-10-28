@@ -40,11 +40,17 @@ myApp.controller('MockController', function(UserService, $http) {
       var history = {
           status: 'closed'
       };
-      
+
       console.log('creating a sensor');
       $http.put('/security/history/' + sensorId, history).then(function(response){
           getSensors();
           console.log('created a sensor!!');
+      });
+    }
+
+    vm.toggleAlarm = function() {
+      $http.put('/user/toggleAlarm').then(function(response){
+        console.log('success');
       });
     }
 
