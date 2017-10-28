@@ -31,6 +31,16 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+
+    .when('/mock', {
+      templateUrl: '/views/templates/mock.html',
+      controller: 'MockController as mc',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
