@@ -10,7 +10,7 @@ var db = require('./modules/db.config.js');
 
 // socket.io
 var http = require('http').Server(app);
-var io = require('socket.io')(http, { path: '/socket.io' });
+var io = require('socket.io')(http, { path: '/drone' });
 
 // socket middleware
 io.use((socket, next) => {
@@ -19,21 +19,28 @@ io.use((socket, next) => {
         socket.token = token;
         return next();
     }
-
     console.log('token rejected:', token);
     return next(new Error('authentication error'));
 });
 
 // establish socket connection
-io.sockets.on('connection', function (socket) {
-    var token = socket.handshake.query.token;
-    console.log('connection token:', token);
+io.on('connection', function (socket) {
+    console.log('connected with id', socket.id);
 
-    socket.on('message', function (message) {
-        console.log('socket.id', socket.id);
-        console.log(socket.handshake.query.token, 'says', message);
-    });
+    // takeoff in 3 seconds
+    setTimeout(function () {
+        io.to(socket.id).emit('takeoff');
+    }, 3000);
 
+    // land in 6 seconds
+    setTimeout(function () {
+        io.to(socket.id).emit('land');
+    }, 6000);
+
+});
+
+io.on('disconnect', function (socket) {
+    console.log('id', socket.id, 'disconnected');
 });
 
 // Route includes
