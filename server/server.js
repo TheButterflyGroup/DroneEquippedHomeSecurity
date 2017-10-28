@@ -27,20 +27,47 @@ io.use((socket, next) => {
 io.on('connection', function (socket) {
     console.log('connected with id', socket.id);
 
-    // takeoff in 5 seconds
+    // 5 seconds
     setTimeout(function () {
+        console.log('drone takeoff command sent');
         io.to(socket.id).emit('takeoff');
     }, 5000);
 
-    // animate in 15 seconds
-    setTimeout(function() {
-        io.to(socket.id).emit('animate');
+    // 10 seconds
+    setTimeout(function () {
+        console.log('drone forward command sent');
+        io.to(socket.id).emit('forward');
+    }, 10000);
+
+    // 15 seconds
+    setTimeout(function () {
+        console.log('drone flipBack command sent');
+        io.to(socket.id).emit('flipFront');
     }, 15000);
 
-    // land in 30 seconds
+    // 20 seconds
     setTimeout(function () {
-        io.to(socket.id).emit('land');
+        console.log('drone flipLeft command sent');
+        io.to(socket.id).emit('flipLeft');
+    }, 20000);
+
+    // 25 seconds
+    setTimeout(function () {
+        console.log('drone flipRight command sent');
+        io.to(socket.id).emit('flipRight');
+    }, 25000);
+
+    // 30 seconds
+    setTimeout(function () {
+        console.log('drone backward command sent');
+        io.to(socket.id).emit('backward');
     }, 30000);
+
+    // 40 seconds
+    setTimeout(function () {
+        console.log('drone land command sent');
+        io.to(socket.id).emit('land');
+    }, 40000);
 
 });
 

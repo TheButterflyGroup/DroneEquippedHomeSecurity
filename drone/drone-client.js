@@ -14,7 +14,7 @@ const drone = new Drone({
 var isConnected = false;
 
 // on drone connected
-drone.onDisconnect(() => {
+drone.on('disconnected', () => {
     console.log('drone disconnected');
     isConnected = true;
 });
@@ -50,7 +50,7 @@ socket.on('takeoff', function (data) {
 
 // land command
 socket.on('land', function (data) {
-    console.log('landing command received');
+    console.log('land command received');
     if (isConnected) {
         console.log('landing initiated');
         drone.land();
@@ -59,6 +59,80 @@ socket.on('land', function (data) {
     }
 });
 
-socket.on('animate', function (data) {
+socket.on('flipLeft', function (data) {
+    console.log('flipLeft command received');
+    if (isConnected) {
+        console.log('flipLeft initiated');
+        drone.animate('flipLeft');
+    } else {
+        console.log('flipLeft failed: drone not connected');
+    }
+});
 
+socket.on('flipRight', function (data) {
+    console.log('flipRight command received');
+    if (isConnected) {
+        console.log('flipRight initiated');
+        drone.animate('flipRight');
+    } else {
+        console.log('flipRight failed: drone not connected');
+    }
+});
+
+socket.on('flipFront', function (data) {
+    console.log('flipFront command received');
+    if (isConnected) {
+        console.log('flipFront initiated');
+        drone.animate('flipFront');
+    } else {
+        console.log('flipFront failed: drone not connected');
+    }
+});
+
+socket.on('flipBack', function (data) {
+    console.log('flipBack command received');
+    if (isConnected) {
+        console.log('flipBack initiated');
+        drone.animate('flipBack');
+    } else {
+        console.log('flipBack failed: drone not connected');
+    }
+});
+
+socket.on('forward', function (data) {
+    const flightParams = {
+        yaw: 0,
+        pitch: 5,
+        roll: 0,
+        altitude: 0,
+    };
+
+    drone.setFlightParams(flightParams);
+    timeout = setTimeout(() => {
+        drone.setFlightParams({
+            yaw: 0,
+            pitch: 0,
+            roll: 0,
+            altitude: 0,
+        });
+    }, 100);
+});
+
+socket.on('backward', function (data) {
+    const flightParams = {
+        yaw: 0,
+        pitch: -10,
+        roll: 0,
+        altitude: 0,
+    };
+
+    drone.setFlightParams(flightParams);
+    timeout = setTimeout(() => {
+        drone.setFlightParams({
+            yaw: 0,
+            pitch: 0,
+            roll: 0,
+            altitude: 0,
+        });
+    }, 100);
 });
