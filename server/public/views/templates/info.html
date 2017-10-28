@@ -1,6 +1,15 @@
-<div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
-  <p>
-    In Info
-  </p>
-</div>
+<div ng-include="'views/partials/nav.html'" ng-controller="InfoController as ic"></div>
+  <div class="container">
+    <!-- <div ng-repeat="doorInfo in ic.getDoorStatus"> -->
+    <p>
+      <strong>Door Status:</strong>
+      <!-- {{doorInfo.[model index]}} -->
+    </p>
+    <!-- </div> -->
+    <!-- <div ng-repeat="motionInfo in ic.getMotionData"> -->
+    <p>
+      <strong>Motion Log:</strong>
+      <!-- {{motionInfo.[model index]}} -->
+    </p>
+    <!-- </div> -->
+  </div>
