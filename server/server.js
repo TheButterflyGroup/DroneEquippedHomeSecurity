@@ -27,15 +27,20 @@ io.use((socket, next) => {
 io.on('connection', function (socket) {
     console.log('connected with id', socket.id);
 
-    // takeoff in 3 seconds
+    // takeoff in 5 seconds
     setTimeout(function () {
         io.to(socket.id).emit('takeoff');
-    }, 3000);
+    }, 5000);
 
-    // land in 6 seconds
+    // animate in 15 seconds
+    setTimeout(function() {
+        io.to(socket.id).emit('animate');
+    }, 15000);
+
+    // land in 30 seconds
     setTimeout(function () {
         io.to(socket.id).emit('land');
-    }, 6000);
+    }, 30000);
 
 });
 
