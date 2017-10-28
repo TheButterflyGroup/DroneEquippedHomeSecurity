@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user.js')
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -27,6 +28,22 @@ router.get('/logout', function(req, res) {
   req.logOut();
   res.sendStatus(200);
 });
+
+router.put('/toggleAlarm', function(req, res) {
+  
+    console.log('Alarm has been toggled');
+      User.findById(req.user.id, function(error, user){
+        user.active = !user.active;
+        user.save(function (err) {
+          if(err) {
+              console.error('ERROR!');
+              res.sendStatus(500);
+          } else {
+              res.sendStatus(201);
+          }
+      });
+    })
+  });
 
 
 module.exports = router;
