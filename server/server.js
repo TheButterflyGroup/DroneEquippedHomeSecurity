@@ -27,7 +27,8 @@ io.use((socket, next) => {
 io.on('connection', function (socket) {
     console.log('connected with id', socket.id);
 
-   
+
+    // drone animation 
     setTimeout(function () {
         console.log('drone takeoff command sent');
         io.to(socket.id).emit('takeoff');
@@ -35,21 +36,30 @@ io.on('connection', function (socket) {
 
 
     setTimeout(function () {
-        console.log('drone forward command sent');
-        io.to(socket.id).emit('forward', {value: 5});
-    }, 10000);
+        console.log('drone pitch up command sent');
+        io.to(socket.id).emit('pitchup', { value: 7 });
+    }, 7000);
+
+    setTimeout(function () {
+        console.log('drone row left command sent');
+        io.to(socket.id).emit('rowleft', { value: 5 });
+    }, 8000);
 
 
     setTimeout(function () {
-        console.log('drone backward command sent');
-        io.to(socket.id).emit('backward', {value: 5});
-    }, 25000);
+        console.log('drone row right command sent');
+        io.to(socket.id).emit('rowright', { value: 10 });
+    }, 10000);
 
+    setTimeout(function () {
+        console.log('drone pitch down command sent');
+        io.to(socket.id).emit('pitchdown', { value: 7 });
+    }, 15000);
 
     setTimeout(function () {
         console.log('drone land command sent');
         io.to(socket.id).emit('land');
-    }, 40000);
+    }, 17000);
 
 });
 
