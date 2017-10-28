@@ -33,14 +33,14 @@ router.post('/sensor', function (req,res){
         userId: req.user._id
     });
 
-    newSensor.save(function(err) {
+    newSensor.save(function(err, sensor) {
         console.log('newSensor here');
         if(err){
             console.log(err);
             res.sendStatus(500);
         } else {
             console.log('successful newSensor created');
-            res.sendStatus(201);
+            res.send(sensor);
         }
     });
 });
