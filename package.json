@@ -1,0 +1,37 @@
+{
+  "name": "droneequippedhomesecurity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheButterflyGroup/DroneEquippedHomeSecurity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheButterflyGroup/DroneEquippedHomeSecurity/issues"
+  },
+  "homepage": "https://github.com/TheButterflyGroup/DroneEquippedHomeSecurity#readme",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.13.3",
+    "bootstrap": "^3.3.5",
+    "dotenv": "^4.0.0",
+    "express": "^4.13.1",
+    "express-session": "^1.13.0",
+    "jquery": "^2.1.4",
+    "mongoose": "^4.4.6",
+    "parrot-minidrone": "^1.1.1",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.11.14",
+    "socket.io": "^2.0.4"
+  }
+}
