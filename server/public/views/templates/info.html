@@ -1,15 +1,15 @@
 <div ng-include="'views/partials/nav.html'" ng-controller="InfoController as ic"></div>
-  <div class="container">
-    <!-- <div ng-repeat="doorInfo in ic.getDoorStatus"> -->
+<div class="container">
+  <div ng-repeat="sensor in ic.sensorObject.data">
     <p>
-      <strong>Door Status:</strong>
-      <!-- {{doorInfo.[model index]}} -->
+      <strong>Sensor Status:</strong>
+      {{sensor.type}}
     </p>
-    <!-- </div> -->
-    <!-- <div ng-repeat="motionInfo in ic.getMotionData"> -->
     <p>
-      <strong>Motion Log:</strong>
-      <!-- {{motionInfo.[model index]}} -->
+      {{sensor.isOpen}}
     </p>
-    <!-- </div> -->
+    <p>
+      {{sensor.history}}
+    </p>
   </div>
+</div>
