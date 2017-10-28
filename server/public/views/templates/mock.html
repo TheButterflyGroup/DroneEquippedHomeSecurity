@@ -1,12 +1,23 @@
-<div ng-include="'views/templates/mock.html'"></div>
 <div class="container">
 
-        <form action="">
-            <button class="btn btn-default" ng-click="mc.userService.open()">Open Door</button>
-            <button class="btn btn-default" ng-click="mc.userService.close()">Closed Door</button>
-            <button class="btn btn-default" ng-click="mc.userService.detected()">Motion Detected</button>
-        </form>
-   
+    <input type="text" ng-model="sensorName">
+    <button class="btn btn-default" ng-click="mc.addDoor(sensorName)">Add Sensor</button>
+    
+    <div ng-repeat="sensor in mc.sensors">
+        {{sensor.name}}: {{sensor._id}}
+        <div ng-repeat="history in sensor.history">
+            {{history}}
+        </div>
+    </div>
+
+    <input type="text" ng-model="sensorId">
+    <button class="btn btn-default" ng-click="mc.openDoor(sensorId)">Open</button>
+    <button class="btn btn-default" ng-click="mc.closeDoor(sensorId)">Close</button>
+
+    <!-- <button class="btn btn-default" ng-click="mc.userService.open()">Open Door</button>
+    <button class="btn btn-default" ng-click="mc.userService.close()">Closed Door</button>
+    <button class="btn btn-default" ng-click="mc.userService.detected()">Motion Detected</button> -->
+
 
 
 </div>
