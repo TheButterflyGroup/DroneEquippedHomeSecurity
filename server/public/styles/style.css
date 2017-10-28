@@ -11,9 +11,23 @@ body, html {
 }
 
 .instructions {
+  background-color: #FFFFFF;;
+  color: #333333;
+  padding: 15px;
+}
+
+#register-home {
   background-color: #333333;
   color: #DDDDDD;
-  padding: 15px;
+  padding: 15px; 
+}
+
+#register-cancel {
+  color: #DC9318;
+}
+
+#header-effect {
+  color: #DC9318;
 }
 
 #entryForm {
@@ -77,4 +91,14 @@ li a {
 li a:hover {
   text-decoration: underline;
   color: #eee;
+}
+
+.butterfly-logo {
+  float: left;
+  height: 45px;
+  padding: 4px;
+}
+
+.reg-log-form * {
+  margin-bottom: 6px;  
 }
