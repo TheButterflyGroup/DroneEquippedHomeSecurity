@@ -62,7 +62,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Nestor J. Software Developer
+* Nestor G. Software Developer
 * Sarah C. Software Developer
 * Alecia H. Software Developer
 * Xiong V. Software Developer
