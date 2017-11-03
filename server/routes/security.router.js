@@ -47,11 +47,13 @@ router.post('/sensor', function (req, res) {
     });
 });
 
-// adds current sensor readings to history
+// put current sensor readings to history
 router.put('/history/:id', function (req, res) {
-    console.log('in /motion POST', req.params.id);
+    console.log('PUT security/history/:id', req.body);
     Sensor.findById(req.params.id, function (err, foundSensor) {
         foundSensor.history.push(req.body);
+
+        // if door open
         if (req.body.status === 'open') {
             foundSensor.isOpen = true;
 

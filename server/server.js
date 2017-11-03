@@ -10,10 +10,10 @@ var db = require('./modules/db.config.js');
 
 // socket.io
 var http = require('http').Server(app);
-app.io = require('socket.io')(http, { path: '/drone' });
+var io = require('socket.io')(http, { path: '/drone' });
 
 // socket middleware
-app.io.use((socket, next) => {
+io.use((socket, next) => {
     let token = socket.handshake.query.token;
     if (token === 'butterfly') {
         socket.token = token;
@@ -24,12 +24,78 @@ app.io.use((socket, next) => {
 });
 
 // establish socket connection
-app.io.on('connection', function (socket) {
+io.on('connection', function (socket) {
 
-    app.socketId = socket.id;
+    socketId = socket.id;
 
-    console.log('connected with id', app.socketId);
+    console.log('connected with id', socketId);
 });
+
+// function to animate drone params: io, socketId
+var droneAnimate = require('./modules/drone');
+
+
+var Particle = require('particle-api-js');
+var particle = new Particle();
+var token;
+var DEVICE_ID = '51ff6e065082554928300887';
+
+particle.login({ username: 'blackcj2@gmail.com', password: 'spark9684' }).then(
+    function (data) {
+        console.log('API call completed on promise resolve: ', data.body.access_token);
+        token = data.body.access_token;
+
+        // //Get all events
+        particle.getEventStream({ auth: token, deviceId: DEVICE_ID }).then(function (stream) {
+            stream.on('event', function (data) {
+                console.log('getEventStream() Event: ', data);
+                animateDrone();
+            });
+        });
+
+    },
+    function (err) {
+        console.log('API call completed on promise fail: ', err);
+    }
+);
+
+function animateDrone() {
+    setTimeout(function () {
+        console.log('drone takeoff command sent');
+        io.to(socketId).emit('takeoff');
+    }, 5000);
+
+
+    setTimeout(function () {
+        console.log('drone pitch up command sent');
+        io.to(socketId).emit('pitchup', { value: 7 });
+    }, 7000);
+
+    setTimeout(function () {
+        console.log('drone row left command sent');
+        io.to(socketId).emit('rowleft', { value: 5 });
+    }, 8000);
+
+    setTimeout(function () {
+        console.log('drone row right command sent');
+        io.to(socketId).emit('rowright', { value: 10 });
+    }, 10000);
+
+    setTimeout(function () {
+        console.log('drone row left command sent');
+        io.to(socketId).emit('rowleft', { value: 5 });
+    }, 12000);
+
+    setTimeout(function () {
+        console.log('drone pitch down command sent');
+        io.to(socketId).emit('pitchdown', { value: 7 });
+    }, 15000);
+
+    setTimeout(function () {
+        console.log('drone land command sent');
+        io.to(socketId).emit('land');
+    }, 17000);
+}
 
 // Route includes
 var indexRouter = require('./routes/index.router');
