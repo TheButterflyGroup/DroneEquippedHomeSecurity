@@ -62,12 +62,13 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-We are a team of FullStack Software Developers and a UX Designer. Chris B. is our team captain who's also a FullStack Developer and instructor at [Prime Digital Academy](https://primeacademy.io/)
+We are a team of Full Stack Software Developers and a UX Designer. Chris B. is our team captain who's also a Full Stack Developer and instructor at [Prime Digital Academy](https://primeacademy.io/)
 * Nestor G. 
 * Sarah C. 
 * Alecia H. 
 * Xiong V.
-* Josh K. [UX Designer](https://www.joshkaeding.com/) 
 * Chris B.
+* Josh K. [UX Designer](https://www.joshkaeding.com/) 
+
 
 
