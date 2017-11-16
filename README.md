@@ -62,11 +62,12 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Nestor G. Software Developer
-* Sarah C. Software Developer
-* Alecia H. Software Developer
-* Xiong V. Software Developer
+We are a team of FullStack Software Developers and a UX Designer. Chris Black is our team captain who's also a FullStack Developer and instructor at [Prime Digital Academy](https://primeacademy.io/)
+* Nestor G. 
+* Sarah C. 
+* Alecia H. 
+* Xiong V.
 * Josh K. [UX Designer](https://www.joshkaeding.com/) 
-* Chris B. Software Developer/Instructor [Prime Digital Academy](https://primeacademy.io/)
+* Chris B. Software Developer/Instructor 
 
 
