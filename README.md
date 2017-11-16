@@ -66,10 +66,7 @@ Add additional notes about how to deploy this on a live system
 * Sarah C. Software Developer
 * Alecia H. Software Developer
 * Xiong V. Software Developer
-* [Josh K.] UX Designer (https://www.joshkaeding.com/) 
+* Josh K. [UX Designer] (https://www.joshkaeding.com/) 
 * Chris B. Software Developer/Instructor [Prime Digital Academy](https://primeacademy.io/)
 
 
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
