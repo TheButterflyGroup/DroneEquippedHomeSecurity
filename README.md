@@ -4,14 +4,14 @@ Home security system that can activate a drone when it detects an intruder. Our 
 
 ## Built With
 
-CSS3
-HTML5
-MEAN Stack
-Parrot Drone
-Passport.js
-Photon Core
-Rapberry Pi
-Socket.io
+- CSS3
+- HTML5
+- MEAN Stack
+- Parrot Drone
+- Passport.js
+- Photon Core
+- Rapberry Pi
+- Socket.io
 
 ## Getting Started
 
