@@ -1,4 +1,4 @@
-# DroneEquippedHomeSecurity
+# Drone Equipped Home Security
 
 Home security system that can activate a drone when it detects an intruder. Our hypothesis is that having a drone lift of will deter intruders. Having a drone would also reduce the number of cameras needed in a home or warehouse security setting. In the future, we would like to include the capability to take photos or records video when the drone activates. Also, Wwe built a small wooden door on-site and attached a sensor to it to simulate a door being open and closed to test the drone.
 
