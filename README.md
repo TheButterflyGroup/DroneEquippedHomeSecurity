@@ -10,7 +10,7 @@ Home security system that can activate a drone when it detects an intruder. Our 
 - Parrot Drone
 - Passport.js
 - Photon Core
-- Rapberry Pi
+- Raspberry Pi
 - Socket.io
 
 ## Getting Started
