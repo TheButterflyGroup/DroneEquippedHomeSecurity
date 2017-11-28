@@ -2,7 +2,7 @@
 // Drone
 const Drone = require('./Drone');
 
-const MAX_ALTITUDE = 8;
+const MAX_ALTITUDE = 4;
 
 const drone = new Drone({
     autoconnect: true,
@@ -16,7 +16,7 @@ var isConnected = false;
 // on drone connected
 drone.on('disconnected', () => {
     console.log('drone disconnected');
-    isConnected = true;
+    isConnected = false;
 });
 
 
@@ -29,6 +29,7 @@ var socket = io.connect('http://localhost:5000/?token=butterfly',
 // on socket connection
 socket.on('connect', function () {
     console.log('socket.id:', socket.id);
+    isConnected = true;
 });
 
 // takeoff commande

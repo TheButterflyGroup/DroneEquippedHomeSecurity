@@ -19,7 +19,11 @@ body, html {
 #register-home {
   background-color: #333333;
   color: #DDDDDD;
-  padding: 15px; 
+  padding: 15px;
+}
+
+#register-home input {
+  color: #000;
 }
 
 #register-cancel {
@@ -100,5 +104,5 @@ li a:hover {
 }
 
 .reg-log-form * {
-  margin-bottom: 6px;  
+  margin-bottom: 6px;
 }

@@ -26,23 +26,17 @@ myApp.controller('MockController', function(UserService, $http) {
     }
 
     vm.openDoor = function(sensorId){
-      var history = {
-          status: 'open'
-      };
+
       console.log('creating a sensor');
-      $http.put('/security/history/' + sensorId, history).then(function(response){
+      $http.put('/security/history/open/' + sensorId).then(function(response){
           getSensors();
           console.log('created a sensor!!');
       });
     }
 
     vm.closeDoor = function(sensorId){
-      var history = {
-          status: 'closed'
-      };
-
       console.log('creating a sensor');
-      $http.put('/security/history/' + sensorId, history).then(function(response){
+      $http.put('/security/history/close/' + sensorId).then(function(response){
           getSensors();
           console.log('created a sensor!!');
       });
@@ -55,4 +49,3 @@ myApp.controller('MockController', function(UserService, $http) {
     }
 
   });
-  

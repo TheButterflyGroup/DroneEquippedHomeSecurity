@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 // function to animate drone params: io, socketId
-var droneAnimate = require('../modules/drone');
+var droneClient = require('../modules/drone');
 
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
@@ -48,21 +48,17 @@ router.post('/sensor', function (req, res) {
 });
 
 // adds current sensor readings to history
-router.put('/history/:id', function (req, res) {
+router.put('/history/open/:id', function (req, res) {
     console.log('in /motion POST', req.params.id);
     Sensor.findById(req.params.id, function (err, foundSensor) {
-        foundSensor.history.push(req.body);
-        if (req.body.status === 'open') {
-            foundSensor.isOpen = true;
+      if(foundSensor) {
+        foundSensor.history.push({'status': 'open'});
+        foundSensor.isOpen = true;
 
-            //animate drone
-            console.log('PUT security/history/:id socketId ->', req.app.socketId);
-            droneAnimate(req.app.io, req.app.socketId);
-
-        } else if (req.body.status === 'closed') {
-            foundSensor.isOpen = false;
-        }
-
+        //animate drone
+        console.log('PUT security/history/:id socketId ->', req.app.socketId);
+        droneClient.animate(req.app.io, req.app.socketId);
+        req.app.io.emit('refresh', 'refresh data');
         foundSensor.save(function (err) {
             if (err) {
                 console.error('ERROR!');
@@ -71,9 +67,36 @@ router.put('/history/:id', function (req, res) {
                 res.sendStatus(201);
             }
         });
+      } else {
+        res.sendStatus(500);
+      }
+
     });
 
-})
+});
+
+// adds current sensor readings to history
+router.put('/history/close/:id', function (req, res) {
+    console.log('in /history/close PUT', req.params.id);
+    Sensor.findById(req.params.id, function (err, foundSensor) {
+      if(foundSensor) {
+        foundSensor.history.push({'status': 'closed'});
+        foundSensor.isOpen = false;
+        req.app.io.emit('refresh', 'refresh data');
+        foundSensor.save(function (err) {
+            if (err) {
+                console.error('ERROR!');
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(201);
+            }
+        });
+      } else {
+        res.sendStatus(500);
+      }
+    });
+
+});
 
 router.get('/all', function (req, res) {
     console.log('in /all GET');

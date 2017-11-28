@@ -1,5 +1,14 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
+// socket.io
+var socket = io.connect('http://localhost:5000/?token=butterfly',
+    { path: '/drone' });
+
+// on socket connection
+socket.on('connect', function () {
+    console.log('socket.id:', socket.id);
+});
+
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
